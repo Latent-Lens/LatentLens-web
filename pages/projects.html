@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects | LatentLens</title>
+    <meta name="description" content="LatentLens projects and services." />
+    <link rel="icon" href="../public/img/icon.svg" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Primary navigation">
+        <a class="brand" href="../index.html" aria-label="LatentLens home">
+          <img src="../public/img/logo.svg" alt="LatentLens" />
+        </a>
+
+        <div class="desktop-nav">
+          <a href="../index.html">about</a>
+          <a class="active" href="projects.html">projects</a>
+          <a href="publications.html">publications</a>
+          <a href="repositories.html">repositories</a>
+        </div>
+
+        <div class="mobile-controls">
+          <button class="menu-toggle collapsed" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="mobile-nav" hidden>
+        <a href="../index.html">about</a>
+        <a class="active" href="projects.html">projects</a>
+        <a href="publications.html">publications</a>
+        <a href="repositories.html">repositories</a>
+      </div>
+    </header>
+
+    <main class="page-container">
+      <section class="intro-section">
+        <div class="post-header">
+          <h1>projects</h1>
+          <p>Focused work for biomedical data questions, analysis reviews, and research tools.</p>
+        </div>
+
+        <!-- PROJECT_LIST_START -->
+        <div class="project-grid">
+          <article class="project-card">
+            <a class="project-thumb-link" href="projects/ptm-proteomics.html" aria-label="Proteomics PTM Analysis">
+              <div class="project-thumb project-thumb-ptm" aria-hidden="true"></div>
+              <img class="project-image" src="../public/img/ptm_project.png" alt="" />
+            </a>
+            <div class="project-content">
+              <div class="project-title-row">
+                <h2><a href="projects/ptm-proteomics.html">Proteomics PTM Analysis</a></h2>
+                <div class="project-meta project-meta-stacked">
+                  <span class="project-badge status-active">Active</span>
+                  <span class="project-badge-row"><span class="project-badge">Consulting</span><span class="project-badge">Proteomics</span></span>
+                </div>
+              </div>
+              <p>Differential post-translational modification analysis for proteomics data, connecting peptide-level quantification to site biology, pathway context, and interpretable research summaries.</p>
+              <p class="project-byline">By: LatentLens Research Group</p>
+              <a class="read-more" href="projects/ptm-proteomics.html">Read More →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <a class="project-thumb-link" href="projects/clinical-data-tools.html" aria-label="Clinical Data Tools">
+              <div class="project-thumb project-thumb-blue" aria-hidden="true"><span>CD</span></div>
+            </a>
+            <div class="project-content">
+              <div class="project-title-row">
+                <h2><a href="projects/clinical-data-tools.html">Clinical Data Tools</a></h2>
+                <div class="project-meta">
+                  <span class="project-badge status-design">In Design</span>
+                  <span class="project-badge">Clinical Data</span>
+                </div>
+              </div>
+              <p>Small, focused tools for cohort definition, feature engineering, data quality checks, and repeatable clinical informatics workflows.</p>
+              <p class="project-byline">By: LatentLens Research Group</p>
+              <a class="read-more" href="projects/clinical-data-tools.html">Read More →</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <a class="project-thumb-link" href="projects/research-reports.html" aria-label="Research Reports">
+              <div class="project-thumb project-thumb-red" aria-hidden="true"><span>RR</span></div>
+            </a>
+            <div class="project-content">
+              <div class="project-title-row">
+                <h2><a href="projects/research-reports.html">Research Reports</a></h2>
+                <div class="project-meta">
+                  <span class="project-badge status-complete">Complete</span>
+                  <span class="project-badge">Reporting</span>
+                </div>
+              </div>
+              <p>Publication-ready summaries that connect methods, evidence, limitations, and next steps in language collaborators can inspect and reuse.</p>
+              <p class="project-byline">By: LatentLens Research Group</p>
+              <a class="read-more" href="projects/research-reports.html">Read More →</a>
+            </div>
+          </article>
+        </div>
+        <!-- PROJECT_LIST_END -->
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-container footer-inner">
+        <span><a href="mailto:contact@LatentLens.org">contact@LatentLens.org</a></span>
+        <span>&copy; <span data-year></span> LatentLens</span>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
