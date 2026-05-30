@@ -14,13 +14,7 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 WATCH_EXTENSIONS = {".css", ".html", ".js", ".json", ".md", ".svg", ".webp", ".png", ".jpg", ".jpeg"}
-BUILD_INPUTS = {Path("data/projects.md")}
-BUILD_OUTPUTS = {
-    Path("pages/projects.html"),
-    Path("pages/projects/ptm-proteomics.html"),
-    Path("pages/projects/clinical-data-tools.html"),
-    Path("pages/projects/research-reports.html"),
-}
+BUILD_INPUTS = {Path("data/projects.md"), Path("data/publications.md"), Path("data/pmids.txt"), Path("pages/projects/template.html")}
 
 LIVE_RELOAD_SCRIPT = """
 <script>
@@ -85,10 +79,14 @@ class ChangeTracker:
             }
             changed.update(Path(path) for path in self._snapshot if path not in next_snapshot)
 
+            is_only_build_outputs = all(
+                p == Path("pages/projects.html") or p == Path("pages/publications.html") or (p.parent == Path("pages/projects") and p.suffix == ".html" and p.name != "template.html")
+                for p in changed
+            )
             if changed & BUILD_INPUTS:
                 self._run_build()
                 next_snapshot = self._scan()
-            elif changed and changed <= BUILD_OUTPUTS:
+            elif changed and is_only_build_outputs:
                 self._snapshot = next_snapshot
                 continue
 

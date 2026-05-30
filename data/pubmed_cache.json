@@ -1,0 +1,26 @@
+{
+  "38541243": {
+    "title": "Factors Influencing Burnout Syndrome and Depression in Dentists across Various Institutions",
+    "authors": "Levent Ci\u011ferim, Zeynep Dilan Orhan, \u0130brahim Do\u011fru, Nazl\u0131 Hilal Kahraman, Abdalrahim Hussein, Hayrettin Ba\u015f",
+    "journal": "Medicina (Kaunas, Lithuania)",
+    "year": "2024",
+    "volume": "60",
+    "issue": "3",
+    "pages": "",
+    "doi": "10.3390/medicina60030517",
+    "abstract": "Background and Objectives: This study aimed to identify the occupational and personal factors influencing burnout syndrome (BS) and depression among dentists in academic faculties, oral and dental health centres (ODHCs), and private clinics. Materials and Methods: This prospective, cross-sectional study was carried out on dentists working in different regions of Turkey. Data were gathered through an online questionnaire hosted on Google Forms. The questionnaire consisted of demographic data and Maslach BS Inventory (MBI) and Beck Depression Inventory (BDI) sections. The demographic data collected included age, height, weight, marital status, blood type, gender, monthly income, income satisfaction, and whether the participant had enough free time. The dentists were divided into three groups, namely, faculty setting, private clinic, and ODHC, according to the institutions at which they worked. Results: The study was composed of 290 dentists, including 172 males and 118 females, with an average age of 36.98 \u00b1 5.56 years. In total, 128 of the dentists worked in faculties, 72 worked in private clinics, and 90 worked in ODHCs. The study found that women exhibited higher EE scores than men (p < 0.05). The comparison of BS and depression scores showed no statistically significant differences between groups based on marital status or blood type (p > 0.05). There was no significant relationship between emotional exhaustion (EE), depersonalisation (DP), personal accomplishment (PA), and depression scores according to age, BMI, and work experience (p < 0.05). It was found that the EE scores of the dentists working in faculties and private clinics were lower than those of the dentists working in ODHCs (p < 0.05). Monthly income was associated with depression (r = -0.35). Conclusions: The findings reveal that dentists employed in ODHCs reported greater levels of EE. These results suggest a pressing need for enhancements in the work environments of dentists, especially in ODHCs.",
+    "first_author_last": "Ci\u011ferim"
+  },
+  "38184845": {
+    "title": "Profiling the compendium of changes in Saccharomyces cerevisiae due to mutations that alter availability of the main methyl donor S-Adenosylmethionine",
+    "authors": "McKayla Remines, Makailyn G Schoonover, Zoey Knox, Kailee Kenwright, Kellyn M Hoffert, Amila Coric, James Mead, Joseph Ampfer, Serigne Seye, Erin D Strome",
+    "journal": "G3 (Bethesda, Md.)",
+    "year": "2024",
+    "volume": "14",
+    "issue": "4",
+    "pages": "",
+    "doi": "10.1093/g3journal/jkae002",
+    "abstract": "The SAM1 and SAM2 genes encode for S-Adenosylmethionine (AdoMet) synthetase enzymes, with AdoMet serving as the main cellular methyl donor. We have previously shown that independent deletion of these genes alters chromosome stability and AdoMet concentrations in opposite ways in Saccharomyces cerevisiae. To characterize other changes occurring in these mutants, we grew wildtype, sam1\u0394/sam1\u0394, and sam2\u0394/sam2\u0394 strains in 15 different Phenotypic Microarray plates with different components and measured growth variations. RNA-Sequencing was also carried out on these strains and differential gene expression determined for each mutant. We explored how the phenotypic growth differences are linked to the altered gene expression, and hypothesize mechanisms by which loss of the SAM genes and subsequent AdoMet level changes, impact pathways and processes. We present 6 stories, discussing changes in sensitivity or resistance to azoles, cisplatin, oxidative stress, arginine biosynthesis perturbations, DNA synthesis inhibitors, and tamoxifen, to demonstrate the power of this novel methodology to broadly profile changes due to gene mutations. The large number of conditions that result in altered growth, as well as the large number of differentially expressed genes with wide-ranging functionality, speaks to the broad array of impacts that altering methyl donor abundance can impart. Our findings demonstrate that some cellular changes are directly related to AdoMet-dependent methyltransferases and AdoMet availability, some are directly linked to the methyl cycle and its role in production of several important cellular components, and others reveal impacts of SAM gene mutations on previously unconnected pathways.",
+    "first_author_last": "Remines"
+  }
+}

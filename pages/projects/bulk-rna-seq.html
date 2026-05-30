@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Characterization of Gene Expression Differences Resulting from Altered Methyl Donor Abundance | LatentLens</title>
+    <meta name="description" content="Differential expression analysis of Saccharomyces cerevisiae mutants to characterize gene expression changes associated with disrupted methyl-donor availability." />
+    <link rel="icon" href="../../public/img/icon.svg" />
+    <link rel="stylesheet" href="../../styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar" aria-label="Primary navigation">
+        <a class="brand" href="../../index.html" aria-label="LatentLens home">
+          <img src="../../public/img/logo.svg" alt="LatentLens" />
+        </a>
+        <div class="desktop-nav">
+          <a href="../../index.html">about</a>
+          <a class="active" href="../projects.html">projects</a>
+          <a href="../publications.html">publications</a>
+          <a href="../repositories.html">repositories</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="page-container">
+      <article class="intro-section project-detail">
+        <!-- PROJECT_DETAIL_START -->
+        <p class="breadcrumb"><a href="../projects.html">projects</a> / bulk-rna-seq</p>
+        <div class="post-header">
+          <h1>Characterization of Gene Expression Differences Resulting from Altered Methyl Donor Abundance</h1>
+
+        <figure class="project-hero">
+          <img src="../../public/img/rna_seq_workflow.png" alt="" />
+        </figure>
+        </div>
+
+        <p>RNA-seq data were analyzed from <em>Saccharomyces cerevisiae</em> strains carrying mutations that alter the availability of S-adenosylmethionine (SAM), the primary cellular methyl donor. The study compared transcriptomic profiles between wild-type yeast and mutant strains to identify gene expression differences and further characterize their biological processes/molecular functions, and pathways affected by altered cellular methylation and methyl cycle capacity.</p>
+        <p>We developed an RNA-seq analysis workflow utilizing nf-core&#x27;s RNA-seq pipeline [10.5281/zenodo.1400710] to process raw sequencing reads, perform quality control, and handle alignment and transcript quantification. These outputs were then analyzed with a containerized DESeq2 workflow to identify differentially expressed genes across experimental conditions. Gene Ontology (GO) and pathway enrichment analyses were used to evaluate the broader biological impact of disrupted SAM metabolism.</p>
+        <h3>Deliverables</h3>
+        <ul>
+          <li><strong>Interactive HTML Report</strong>: An interactive HTML report summarizing results and including publication-quality graphics, allowing researchers to review, navigate, and contextualize the findings more easily.</li>
+          <li><strong>Differential Gene Expression Report</strong>: A differential expression report summarizing gene-level expression changes across all experimental comparisons.</li>
+          <li><strong>Functional Enrichment Maps</strong>: Functional enrichment tables summarizing significantly enriched pathways and Gene Ontology terms for differentially expressed genes.</li>
+        </ul>
+        <h3>Publications</h3>
+        <ul>
+          <li><strong>Profiling the compendium of changes in <em>Saccharomyces cerevisiae</em> due to mutations that alter availability of the main methyl donor S-Adenosylmethionine</strong> (G3 Bethesda, 2024). <a href="https://doi.org/10.1093/g3journal/jkae002" target="_blank" rel="noopener noreferrer">DOI: 10.1093/g3journal/jkae002</a></li>
+        </ul>
+        <!-- PROJECT_DETAIL_END -->
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-container footer-inner">
+        <span><a href="mailto:contact@LatentLens.org">contact@LatentLens.org</a></span>
+        <span>&copy; <span data-year></span> LatentLens</span>
+      </div>
+    </footer>
+
+    <script src="../../script.js"></script>
+  </body>
+</html>
