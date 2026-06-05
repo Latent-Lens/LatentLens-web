@@ -600,18 +600,14 @@ def build() -> None:
             "<!-- PROJECT_DETAIL_END -->",
             render_project_detail(project),
         )
-        detail_html = re.sub(
-            r"<title>.*?</title>",
-            f"<title>{escape(strip_markdown(project.get('title')))} | LatentLens</title>",
-            detail_html,
-            count=1,
-        )
-        detail_html = re.sub(
-            r'<meta name="description" content=".*?" />',
-            f'<meta name="description" content="{escape(strip_markdown(project.get("summary")))}" />',
-            detail_html,
-            count=1,
-        )
+        project_title = escape(strip_markdown(project.get('title')))
+        project_desc = escape(strip_markdown(project.get("summary")))
+        project_url = f"https://latentlens.org/pages/projects/{Path(detail_relative).name}"
+
+        detail_html = detail_html.replace("Project Title | LatentLens", f"{project_title} | LatentLens")
+        detail_html = detail_html.replace("Project Description", project_desc)
+        detail_html = detail_html.replace("https://latentlens.org/pages/projects/placeholder.html", project_url)
+
         write_text_if_changed(detail_path, detail_html)
 
     # Automatically clean up orphaned html files in the projects directory
