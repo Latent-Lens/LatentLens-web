@@ -15,6 +15,14 @@ from urllib.parse import unquote, urlparse
 ROOT = Path(__file__).resolve().parent
 WATCH_EXTENSIONS = {".css", ".html", ".js", ".json", ".md", ".svg", ".webp", ".png", ".jpg", ".jpeg"}
 BUILD_INPUTS = {Path("data/projects.md"), Path("data/publications.md"), Path("data/pmids.txt"), Path("pages/projects/template.html")}
+CLEAN_ROUTE_TARGETS = {
+    "projects": Path("pages/projects.html"),
+    "projects.html": Path("pages/projects.html"),
+    "publications": Path("pages/publications.html"),
+    "publications.html": Path("pages/publications.html"),
+    "repositories": Path("pages/repositories.html"),
+    "repositories.html": Path("pages/repositories.html"),
+}
 
 LIVE_RELOAD_SCRIPT = """
 <script>
@@ -112,7 +120,7 @@ class LiveReloadHandler(BaseHTTPRequestHandler):
             return
 
         requested = unquote(parsed.path.lstrip("/")) or "index.html"
-        target = (ROOT / requested).resolve()
+        target = self._resolve_request(requested)
 
         if not self._is_safe_path(target):
             self.send_error(403)
@@ -165,6 +173,21 @@ class LiveReloadHandler(BaseHTTPRequestHandler):
             return os.path.commonpath([ROOT, target]) == str(ROOT)
         except ValueError:
             return False
+
+    def _resolve_request(self, requested: str) -> Path:
+        clean_target = CLEAN_ROUTE_TARGETS.get(requested)
+        if clean_target:
+            return (ROOT / clean_target).resolve()
+
+        if requested.startswith("projects/"):
+            project_slug = requested.removeprefix("projects/").rstrip("/")
+            if project_slug:
+                project_path = Path(project_slug)
+                if project_path.suffix.lower() != ".html":
+                    project_path = project_path.with_suffix(".html")
+                return (ROOT / "pages" / "projects" / project_path.name).resolve()
+
+        return (ROOT / requested).resolve()
 
     def log_message(self, format: str, *args: object) -> None:
         print(f"{self.address_string()} - {format % args}")

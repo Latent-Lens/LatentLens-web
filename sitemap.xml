@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://latentlens.org/</loc>
-    <lastmod>2026-06-05</lastmod>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>https://latentlens.org/pages/projects.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://latentlens.org/projects</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>https://latentlens.org/pages/publications.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://latentlens.org/publications</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>https://latentlens.org/pages/repositories.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://latentlens.org/repositories</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>https://latentlens.org/pages/projects/silac-proteomics.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://latentlens.org/projects/silac-proteomics</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>https://latentlens.org/pages/projects/thepapertrail.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://latentlens.org/projects/thepapertrail</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>https://latentlens.org/pages/projects/whole-ptm-proteomics.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://latentlens.org/projects/whole-ptm-proteomics</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>https://latentlens.org/pages/projects/bulk-rna-seq.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://latentlens.org/projects/bulk-rna-seq</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>https://latentlens.org/pages/projects/global-weather.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://latentlens.org/projects/global-weather</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
   <url>
-    <loc>https://latentlens.org/pages/projects/pathogen-detection.html</loc>
-    <lastmod>2026-06-05</lastmod>
+    <loc>https://latentlens.org/projects/pathogen-detection</loc>
+    <lastmod>2026-06-08</lastmod>
   </url>
 </urlset>

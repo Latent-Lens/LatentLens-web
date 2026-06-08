@@ -1,15 +1,23 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from datetime import date
 from html import escape
 from pathlib import Path
 import re
+import shutil
+import sys
 
 
 ROOT = Path(__file__).resolve().parent
+OUT_DIR = ROOT / "out"
 PROJECTS_MD = ROOT / "data" / "projects.md"
 PROJECTS_INDEX = ROOT / "pages" / "projects.html"
 PROJECTS_DIR = ROOT / "pages" / "projects"
+REPOSITORIES_INDEX = ROOT / "pages" / "repositories.html"
+HOME_INDEX = ROOT / "index.html"
+ROBOTS_TXT = ROOT / "robots.txt"
+SITEMAP_XML = ROOT / "sitemap.xml"
 PUBLICATIONS_MD = ROOT / "data" / "publications.md"
 PUBLICATIONS_INDEX = ROOT / "pages" / "publications.html"
 PMIDS_TXT = ROOT / "data" / "pmids.txt"
@@ -36,6 +44,21 @@ class Project:
     @property
     def detail_url(self) -> str:
         return self.get("detailUrl", f"projects/{self.slug}.html")
+
+
+def clean_page_path(page_name: str) -> str:
+    return f"/{page_name}"
+
+
+def clean_project_path(project: Project) -> str:
+    path = Path(project.detail_url)
+    return f"/projects/{path.stem}"
+
+
+def absolute_url(path: str) -> str:
+    if path == "/":
+        return "https://latentlens.org/"
+    return f"https://latentlens.org{path}"
 
 
 def parse_projects(markdown: str) -> list[Project]:
@@ -127,9 +150,9 @@ def has_valid_image(project: Project) -> bool:
     return (ROOT / image_path_str).is_file()
 
 
-def render_project_card(project: Project, asset_prefix: str = "../") -> str:
+def render_project_card(project: Project, asset_prefix: str = "/") -> str:
     title = render_inline_markdown(project.get("title"))
-    url = escape(project.detail_url)
+    url = escape(clean_project_path(project))
     image = asset_path(project.get("image"), asset_prefix)
     thumb_class = escape(project.get("thumbClass", "project-thumb-blue"))
     thumb_text = escape(project.get("thumbText"))
@@ -475,7 +498,7 @@ def render_markdown_body(markdown: str) -> str:
     return "\n".join(html_blocks)
 
 
-def render_project_detail(project: Project, asset_prefix: str = "../../") -> str:
+def render_project_detail(project: Project, asset_prefix: str = "/") -> str:
     image = asset_path(project.get("image"), asset_prefix)
     image_html = ""
     if has_valid_image(project):
@@ -485,7 +508,7 @@ def render_project_detail(project: Project, asset_prefix: str = "../../") -> str
           <img src="{escape(image)}" alt="" />
         </figure>"""
 
-    return f"""        <p class="breadcrumb"><a href="../projects.html">projects</a> / {escape(project.slug)}</p>
+    return f"""        <p class="breadcrumb"><a href="/projects">projects</a> / {escape(project.slug)}</p>
         <div class="post-header">
           <h1>{render_inline_markdown(project.get("title"))}</h1>{image_html}
         </div>
@@ -512,7 +535,76 @@ def replace_between_markers(html: str, start: str, end: str, replacement: str) -
 def write_text_if_changed(path: Path, content: str) -> None:
     if path.exists() and path.read_text(encoding="utf-8") == content:
         return
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8", newline="\n")
+
+
+def generate_sitemap(projects: list[Project]) -> str:
+    today = date.today().isoformat()
+    urls = [
+        "/",
+        clean_page_path("projects"),
+        clean_page_path("publications"),
+        clean_page_path("repositories"),
+    ]
+    urls.extend(clean_project_path(project) for project in projects)
+
+    entries = "\n".join(
+        f"""  <url>
+    <loc>{absolute_url(path)}</loc>
+    <lastmod>{today}</lastmod>
+  </url>"""
+        for path in urls
+    )
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{entries}
+</urlset>
+"""
+
+
+def generate_redirects(projects: list[Project]) -> str:
+    rules = [
+        "/index.html / 301",
+        "/pages/projects.html /projects 301",
+        "/pages/publications.html /publications 301",
+        "/pages/repositories.html /repositories 301",
+    ]
+    rules.extend(
+        f"/pages/projects/{Path(project.detail_url).name} {clean_project_path(project)} 301"
+        for project in projects
+    )
+    return "\n".join(rules) + "\n"
+
+
+def export_site(projects: list[Project]) -> None:
+    if OUT_DIR.exists():
+        shutil.rmtree(OUT_DIR)
+    OUT_DIR.mkdir()
+
+    for source, destination in [
+        (HOME_INDEX, OUT_DIR / "index.html"),
+        (PROJECTS_INDEX, OUT_DIR / "projects.html"),
+        (PUBLICATIONS_INDEX, OUT_DIR / "publications.html"),
+        (REPOSITORIES_INDEX, OUT_DIR / "repositories.html"),
+        (ROBOTS_TXT, OUT_DIR / "robots.txt"),
+        (SITEMAP_XML, OUT_DIR / "sitemap.xml"),
+    ]:
+        shutil.copy2(source, destination)
+
+    for asset in ["styles.css", "script.js"]:
+        shutil.copy2(ROOT / asset, OUT_DIR / asset)
+
+    if (ROOT / "public").exists():
+        shutil.copytree(ROOT / "public", OUT_DIR / "public")
+
+    out_projects = OUT_DIR / "projects"
+    out_projects.mkdir()
+    for project in projects:
+        source = PROJECTS_DIR / Path(project.detail_url).name
+        shutil.copy2(source, out_projects / source.name)
+
+    write_text_if_changed(OUT_DIR / "_redirects", generate_redirects(projects))
 
 
 def sync_pmids() -> None:
@@ -602,11 +694,11 @@ def build() -> None:
         )
         project_title = escape(strip_markdown(project.get('title')))
         project_desc = escape(strip_markdown(project.get("summary")))
-        project_url = f"https://latentlens.org/pages/projects/{Path(detail_relative).name}"
+        project_url = absolute_url(clean_project_path(project))
 
         detail_html = detail_html.replace("Project Title | LatentLens", f"{project_title} | LatentLens")
         detail_html = detail_html.replace("Project Description", project_desc)
-        detail_html = detail_html.replace("https://latentlens.org/pages/projects/placeholder.html", project_url)
+        detail_html = detail_html.replace("https://latentlens.org/projects/placeholder", project_url)
 
         write_text_if_changed(detail_path, detail_html)
 
@@ -618,6 +710,8 @@ def build() -> None:
         if path.name not in valid_filenames:
             print(f"Cleaning up orphaned project page: {path.relative_to(ROOT)}")
             path.unlink()
+
+    write_text_if_changed(SITEMAP_XML, generate_sitemap(projects))
 
     print(f"Built {len(projects)} projects from {PROJECTS_MD.relative_to(ROOT)}")
 
@@ -663,6 +757,9 @@ def build() -> None:
         )
         write_text_if_changed(PUBLICATIONS_INDEX, pub_html)
         print(f"Built {len(filtered_pubs)} publications (filtered from {len(publications)}) from {PUBLICATIONS_MD.relative_to(ROOT)}")
+
+    export_site(projects)
+    print(f"Exported Cloudflare Pages site to {OUT_DIR.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
