@@ -28,7 +28,7 @@ To support this analysis, an R-based pipeline was built to process Spectronaut o
 
 ## The Paper Trail
 slug: papertrail
-title: The Paper Trail: An academic citation tracker
+title: The Paper Trail: An academic citation explorer
 status: In Progress
 tags: Research, Big Data
 image: public/img/paptrail_logo.png
