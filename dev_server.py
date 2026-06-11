@@ -14,7 +14,7 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent
 WATCH_EXTENSIONS = {".css", ".html", ".js", ".json", ".md", ".svg", ".webp", ".png", ".jpg", ".jpeg"}
-BUILD_INPUTS = {Path("data/projects.md"), Path("data/publications.md"), Path("data/pmids.txt"), Path("pages/projects/template.html")}
+BUILD_INPUTS = {Path("data/projects.md"), Path("data/publications.md"), Path("data/pmids.txt"), Path("data/news.md"), Path("pages/projects/template.html")}
 CLEAN_ROUTE_TARGETS = {
     "projects": Path("pages/projects.html"),
     "projects.html": Path("pages/projects.html"),
@@ -88,7 +88,7 @@ class ChangeTracker:
             changed.update(Path(path) for path in self._snapshot if path not in next_snapshot)
 
             is_only_build_outputs = all(
-                p == Path("pages/projects.html") or p == Path("pages/publications.html") or (p.parent == Path("pages/projects") and p.suffix == ".html" and p.name != "template.html")
+                p == Path("pages/projects.html") or p == Path("pages/publications.html") or p == Path("index.html") or (p.parent == Path("pages/projects") and p.suffix == ".html" and p.name != "template.html")
                 for p in changed
             )
             if changed & BUILD_INPUTS:

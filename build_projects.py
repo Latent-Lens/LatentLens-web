@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import date
+from datetime import date, datetime
 from html import escape
 from pathlib import Path
 import re
@@ -14,6 +14,7 @@ OUT_DIR = ROOT / "out"
 PROJECTS_MD = ROOT / "data" / "projects.md"
 PROJECTS_INDEX = ROOT / "pages" / "projects.html"
 PROJECTS_DIR = ROOT / "pages" / "projects"
+NEWS_MD = ROOT / "data" / "news.md"
 REPOSITORIES_INDEX = ROOT / "pages" / "repositories.html"
 HOME_INDEX = ROOT / "index.html"
 ROBOTS_TXT = ROOT / "robots.txt"
@@ -176,6 +177,17 @@ def render_project_card(project: Project, asset_prefix: str = "/") -> str:
     tags_html = render_tags(project)
     meta_stacked = " project-meta-stacked" if tags_html else ""
 
+    app_url = project.get("appUrl")
+    is_disabled = project.get("appUrlDisabled", "").lower() in ("true", "yes", "1")
+    disabled_class = " disabled" if is_disabled else ""
+    actual_url = "#" if is_disabled else escape(app_url)
+    target_attr = "" if is_disabled else ' target="_blank" rel="noopener noreferrer"'
+
+    if app_url:
+        actions_html = f'<div class="project-actions"><a class="read-more" href="{url}">Read More →</a><a class="app-link-btn{disabled_class}" href="{actual_url}"{target_attr}>Launch App ↗</a></div>'
+    else:
+        actions_html = f'<a class="read-more" href="{url}">Read More →</a>'
+
     return f"""          <article class="project-card">
             <a class="project-thumb-link" href="{url}" aria-label="{title}">
               <div class="project-thumb {thumb_class}" aria-hidden="true">{thumb_text_html}</div>{image_html}
@@ -189,7 +201,7 @@ def render_project_card(project: Project, asset_prefix: str = "/") -> str:
                 </div>
               </div>
               <p>{render_inline_markdown(project.get("summary"))}</p>
-              <a class="read-more" href="{url}">Read More →</a>
+              {actions_html}
             </div>
           </article>"""
 
@@ -252,6 +264,37 @@ def parse_publications(markdown: str) -> list[Publication]:
         publications.append(Publication(id=fields.get("title", fallback_title), body=body.strip(), fields=fields))
 
     return publications
+
+
+@dataclass
+class NewsItem:
+    date_str: str
+    text: str
+
+def parse_news(markdown: str) -> list[NewsItem]:
+    blocks = re.split(r"\n## ", markdown)
+    items = []
+    for block in blocks[1:]:
+        normalized = block[3:] if block.startswith("## ") else block
+        lines = normalized.strip().splitlines()
+        if not lines:
+            continue
+        date_str = lines[0].strip()
+        text = "\n".join(lines[1:]).strip()
+        items.append(NewsItem(date_str=date_str, text=text))
+    return items
+
+def render_news_list(items: list[NewsItem], max_items: int = 5) -> str:
+    html_lines = []
+    for item in items[:max_items]:
+        try:
+            d = datetime.strptime(item.date_str, "%Y-%m-%d")
+            display_date = d.strftime("%B %d, %Y").replace(" 0", " ")
+        except ValueError:
+            display_date = item.date_str
+            
+        html_lines.append(f'        <p><time datetime="{escape(item.date_str)}">{escape(display_date)}</time><span>{render_inline_markdown(item.text)}</span></p>')
+    return "\n".join(html_lines)
 
 
 def render_publication_item(pub: Publication, index: int) -> str:
@@ -499,6 +542,16 @@ def render_markdown_body(markdown: str) -> str:
 
 
 def render_project_detail(project: Project, asset_prefix: str = "/") -> str:
+    app_url = project.get("appUrl")
+    is_disabled = project.get("appUrlDisabled", "").lower() in ("true", "yes", "1")
+    disabled_class = " disabled" if is_disabled else ""
+    actual_url = "#" if is_disabled else escape(app_url)
+    target_attr = "" if is_disabled else ' target="_blank" rel="noopener noreferrer"'
+
+    app_btn_html = ""
+    if app_url:
+        app_btn_html = f'\n        <div class="project-detail-actions"><a class="app-link-btn app-link-btn-large{disabled_class}" href="{actual_url}"{target_attr}>Launch App ↗</a></div>'
+
     image = asset_path(project.get("image"), asset_prefix)
     image_html = ""
     if has_valid_image(project):
@@ -508,12 +561,18 @@ def render_project_detail(project: Project, asset_prefix: str = "/") -> str:
           <img src="{escape(image)}" alt="" />
         </figure>"""
 
-    return f"""        <p class="breadcrumb"><a href="/projects">projects</a> / {escape(project.slug)}</p>
-        <div class="post-header">
-          <h1>{render_inline_markdown(project.get("title"))}</h1>{image_html}
-        </div>
+    breadcrumb_text = render_inline_markdown(project.get("shortTitle") or project.get("title") or project.slug)
 
-{render_markdown_body(project.body)}"""
+    return f"""      <p class="breadcrumb"><a href="/projects">projects</a> / {breadcrumb_text}</p>
+      <div class="project-header-full">
+        <div class="post-header project-header-left">
+          <h1>{render_inline_markdown(project.get("title"))}</h1>
+        </div>{app_btn_html}
+      </div>
+      <article class="intro-section project-detail">
+{image_html}
+{render_markdown_body(project.body)}
+      </article>"""
 
 
 def replace_between_markers(html: str, start: str, end: str, replacement: str) -> str:
@@ -663,6 +722,18 @@ def sync_pmids() -> None:
 def build() -> None:
     sync_pmids()
     projects = parse_projects(PROJECTS_MD.read_text(encoding="utf-8"))
+
+    if NEWS_MD.exists():
+        news_items = parse_news(NEWS_MD.read_text(encoding="utf-8"))
+        news_items.sort(key=lambda x: x.date_str, reverse=True)
+        home_html = HOME_INDEX.read_text(encoding="utf-8")
+        home_html = replace_between_markers(
+            home_html,
+            "<!-- NEWS_LIST_START -->",
+            "<!-- NEWS_LIST_END -->",
+            render_news_list(news_items, max_items=5),
+        )
+        write_text_if_changed(HOME_INDEX, home_html)
 
     index_html = PROJECTS_INDEX.read_text(encoding="utf-8")
     index_html = replace_between_markers(

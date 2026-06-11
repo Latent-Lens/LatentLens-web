@@ -371,6 +371,7 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 .project-card {
@@ -492,27 +493,27 @@ a:hover {
 }
 
 .status-active {
-  border-color: rgba(0, 159, 6, 0.35);
-  background: #fff;
-  color: #009f06;
+  border-color: #009f06;
+  background: #009f06;
+  color: #fff;
 }
 
 .status-design {
-  border-color: rgba(0, 118, 223, 0.35);
-  background: #fff;
-  color: #0076df;
+  border-color: #0076df;
+  background: #0076df;
+  color: #fff;
 }
 
 .status-complete {
-  border-color: rgba(22, 163, 74, 0.35);
-  background: #fff;
-  color: #16a34a;
+  border-color: #16a34a;
+  background: #16a34a;
+  color: #fff;
 }
 
 .status-progress {
-  border-color: rgba(202, 138, 4, 0.35);
-  background: #fff;
-  color: #ffc163;
+  border-color: #D9B44A;
+  background: #D9B44A;
+  color: #fff;
 }
 
 .project-content {
@@ -556,6 +557,62 @@ a:hover {
   font-weight: 700;
 }
 
+.project-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.app-link-btn {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  background-color: #3F8F5F;
+  color: #fff !important;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 4px;
+  transition: background-color 0.2s, transform 0.2s;
+  text-decoration: none !important;
+}
+
+.app-link-btn:hover {
+  background-color: #2F704A;
+  transform: translateY(-1px);
+}
+
+.app-link-btn.disabled {
+  background-color: #cbd5e1;
+  color: #64748b !important;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.project-header-full {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  gap: 0;
+}
+
+.project-header-left {
+  width: 100%;
+  max-width: 760px;
+  margin-bottom: 0;
+}
+
+.project-detail-actions {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.app-link-btn-large {
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
 .breadcrumb {
   margin: 0 0 1rem;
   color: var(--global-text-color-light);
@@ -564,6 +621,7 @@ a:hover {
 
 .project-detail {
   max-width: 760px;
+  margin-bottom: 4rem;
 }
 
 .project-hero {
@@ -574,11 +632,20 @@ a:hover {
   background: #fff;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .project-hero img {
   width: min(100%, 920px);
   display: block;
+}
+
+.project-detail-actions.overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  margin: 0;
+  z-index: 10;
 }
 
 .publication-list {

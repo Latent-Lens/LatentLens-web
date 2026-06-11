@@ -1,8 +1,33 @@
 # Projects
 
+## FlowPlotter
+slug: flow-plotter
+shortTitle: FlowPlotter
+title: Flow Cytometry Cell-Cycle Analysis Web Application
+status: In Progress
+tags: Research, Bioinformatics, Web Application
+image: public/img/flow_plotter.png
+summary: A web application for ingesting flow cytometry data, modeling cell-cycle distributions with the Dean-Jett-Fox model, and generating highly customizable, publication-ready plots.
+thumbClass: project-thumb-light
+detailUrl: projects/flow-plotter.html
+appUrl: https://flowplotter.latentlens.org
 
-## SLICAC proteomics
+---
+FlowPlotter is a web application that supports both automated and interactive analysis and visualization of flow cytometry data, with a focus on cell-cycle modeling from DNA-content histograms. The application enables users to ingest flow cytometry data, generate one-dimensional histograms (automatically or with user adjustments), fit cell-cycle distributions using Dean-Jett-Fox modeling, and estimate the relative proportions of G1, S-phase, and G2 populations.
+
+The project also focuses on improving the plotting and reporting experience for flow cytometry analysis. Rather than relying on rigid default graphics, FlowPlotter is being developed to deliver highly customizable, publication-ready plots with user-adjustable styling, labels, gates, model overlays, peak annotations, and export settings. The goal is to make cell-cycle analysis more transparent, reproducible, and easier to communicate in manuscripts, presentations, and reports.
+
+**FlowPlotter does all work in the browser (client-side), meaning no data ever leaves the user's computer, ensuring privacy, security, more responsive performance, and an overall better experience.**
+
+### Deliverables
+- **Web Application**: An interactive browser-based application for ingesting flow cytometry data, generating DNA-content histograms, fitting Dean-Jett-Fox cell-cycle models, reviewing estimated G1, S-phase, and G2 percentages, and exporting highly customized, publication-quality plots.
+
+
+
+
+## SILAC proteomics
 slug: silac-proteomics
+shortTitle: SILAC Proteomics
 title: SILAC Heavy-Methyl Post-Translational Modification Proteomics Analysis in *Saccharomyces cerevisiae*
 status: In Progress
 tags: Consulting, Proteomics
@@ -28,6 +53,7 @@ To support this analysis, an R-based pipeline was built to process Spectronaut o
 
 ## The Paper Trail
 slug: papertrail
+shortTitle: The Paper Trail
 title: The Paper Trail: An academic citation explorer
 status: In Progress
 tags: Research, Big Data
@@ -35,6 +61,8 @@ image: public/img/paptrail_logo.png
 summary: The Paper Trail, stylized as “ThePaperTrail,” is an interactive web application that helps users identify authors who cite a selected researcher’s published works.
 thumbClass: project-thumb-light
 detailUrl: projects/thepapertrail.html
+appUrl: https://thepapertrail.latentlens.org
+appUrlDisabled: true
 ---
 The Paper Trail provides researchers with a streamlined way to identify authors who cite a selected researcher’s publications. The application supports citation-network exploration, helping users identify researchers with overlapping scholarly interests, recurring citation relationships, and potential collaborators within a field.
 
@@ -44,6 +72,7 @@ The Paper Trail provides researchers with a streamlined way to identify authors 
 
 ## Whole and PTM proteomics
 slug: whole-ptm-proteomics
+shortTitle: Whole and PTM Proteomics
 title: Whole Proteome and Methyl Proteome Alterations Due to Methyl Donor Abundance Changes
 status: Complete
 tags: Consulting, Proteomics
@@ -70,6 +99,7 @@ A custom R-based workflow was developed to process PEAKS Studio output generated
 
 ## Bulk RNA-seq
 slug: bulk-rna-seq
+shortTitle: Bulk RNA-seq
 title: Characterization of Gene Expression Differences Resulting from Altered Methyl Donor Abundance
 status: Complete, Published
 tags: Consulting, Transcriptomics
@@ -93,11 +123,9 @@ We developed an RNA-seq analysis workflow utilizing nf-core's RNA-seq pipeline [
 
 
 
-
-
-
 ## GlobalWeather
 slug: global-weather
+shortTitle: GlobalWeather
 title: Global Weather and Natural Hazards Web Application
 status: In Progress
 tags: Research, Big Data
@@ -116,6 +144,7 @@ This web application is designed to help users evaluate potential travel or relo
 
 ## PathogenDetection
 slug: pathogen-detection
+shortTitle: Pathogen Detection
 title: Pathogen Detection Platform
 status: In Progress
 tags: Research, Big Data

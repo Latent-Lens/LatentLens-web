@@ -1,56 +1,60 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Characterization of Gene Expression Differences Resulting from Altered Methyl Donor Abundance | LatentLens</title>
-    <meta name="description" content="Differential expression analysis of Saccharomyces cerevisiae mutants to characterize gene expression changes associated with disrupted methyl-donor availability." />
-    <link rel="canonical" href="https://latentlens.org/projects/bulk-rna-seq" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://latentlens.org/projects/bulk-rna-seq" />
-    <meta property="og:title" content="Characterization of Gene Expression Differences Resulting from Altered Methyl Donor Abundance | LatentLens" />
-    <meta property="og:description" content="Differential expression analysis of Saccharomyces cerevisiae mutants to characterize gene expression changes associated with disrupted methyl-donor availability." />
-    <meta property="og:image" content="https://latentlens.org/public/img/logo.png" />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://latentlens.org/projects/bulk-rna-seq" />
-    <meta property="twitter:title" content="Characterization of Gene Expression Differences Resulting from Altered Methyl Donor Abundance | LatentLens" />
-    <meta property="twitter:description" content="Differential expression analysis of Saccharomyces cerevisiae mutants to characterize gene expression changes associated with disrupted methyl-donor availability." />
-    <meta property="twitter:image" content="https://latentlens.org/public/img/logo.png" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Characterization of Gene Expression Differences Resulting from Altered Methyl Donor Abundance | LatentLens</title>
+  <meta name="description" content="Differential expression analysis of Saccharomyces cerevisiae mutants to characterize gene expression changes associated with disrupted methyl-donor availability." />
+  <link rel="canonical" href="https://latentlens.org/projects/bulk-rna-seq" />
 
-    <link rel="icon" href="/public/img/icon.svg" />
-    <link rel="stylesheet" href="/styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <nav class="navbar" aria-label="Primary navigation">
-        <a class="brand" href="/" aria-label="LatentLens home">
-          <img src="/public/img/logo.svg" alt="LatentLens" />
-        </a>
-        <div class="desktop-nav">
-          <a href="/">about</a>
-          <a class="active" href="/projects">projects</a>
-          <a href="/publications">publications</a>
-          <a href="/repositories">repositories</a>
-        </div>
-      </nav>
-    </header>
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://latentlens.org/projects/bulk-rna-seq" />
+  <meta property="og:title" content="Characterization of Gene Expression Differences Resulting from Altered Methyl Donor Abundance | LatentLens" />
+  <meta property="og:description" content="Differential expression analysis of Saccharomyces cerevisiae mutants to characterize gene expression changes associated with disrupted methyl-donor availability." />
+  <meta property="og:image" content="https://latentlens.org/public/img/logo.png" />
 
-    <main class="page-container">
-      <article class="intro-section project-detail">
-        <!-- PROJECT_DETAIL_START -->
-        <p class="breadcrumb"><a href="/projects">projects</a> / bulk-rna-seq</p>
-        <div class="post-header">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://latentlens.org/projects/bulk-rna-seq" />
+  <meta property="twitter:title" content="Characterization of Gene Expression Differences Resulting from Altered Methyl Donor Abundance | LatentLens" />
+  <meta property="twitter:description" content="Differential expression analysis of Saccharomyces cerevisiae mutants to characterize gene expression changes associated with disrupted methyl-donor availability." />
+  <meta property="twitter:image" content="https://latentlens.org/public/img/logo.png" />
+
+  <link rel="icon" href="/public/img/icon.svg" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Primary navigation">
+      <a class="brand" href="/" aria-label="LatentLens home">
+        <img src="/public/img/logo.svg" alt="LatentLens" />
+      </a>
+      <div class="desktop-nav">
+        <a href="/">about</a>
+        <a class="active" href="/projects">projects</a>
+        <a href="/publications">publications</a>
+        <a href="/repositories">repositories</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page-container">
+    <!-- PROJECT_DETAIL_START -->
+      <p class="breadcrumb"><a href="/projects">projects</a> / Bulk RNA-seq</p>
+      <div class="project-header-full">
+        <div class="post-header project-header-left">
           <h1>Characterization of Gene Expression Differences Resulting from Altered Methyl Donor Abundance</h1>
+        </div>
+      </div>
+      <article class="intro-section project-detail">
+
 
         <figure class="project-hero">
           <img src="/public/img/rna_seq_workflow.png" alt="" />
         </figure>
-        </div>
-
         <p>RNA-seq data were analyzed from <em>Saccharomyces cerevisiae</em> strains carrying mutations that alter the availability of S-adenosylmethionine (SAM), the primary cellular methyl donor. The study compared transcriptomic profiles between wild-type yeast and mutant strains to identify gene expression differences and further characterize their biological processes/molecular functions, and pathways affected by altered cellular methylation and methyl cycle capacity.</p>
         <p>We developed an RNA-seq analysis workflow utilizing nf-core&#x27;s RNA-seq pipeline [10.5281/zenodo.1400710] to process raw sequencing reads, perform quality control, and handle alignment and transcript quantification. These outputs were then analyzed with a containerized DESeq2 workflow to identify differentially expressed genes across experimental conditions. Gene Ontology (GO) and pathway enrichment analyses were used to evaluate the broader biological impact of disrupted SAM metabolism.</p>
         <h3>Deliverables</h3>
@@ -63,17 +67,18 @@
         <ul>
           <li><strong>Profiling the compendium of changes in <em>Saccharomyces cerevisiae</em> due to mutations that alter availability of the main methyl donor S-Adenosylmethionine</strong> (G3 Bethesda, 2024). <a href="https://doi.org/10.1093/g3journal/jkae002" target="_blank" rel="noopener noreferrer">DOI: 10.1093/g3journal/jkae002</a></li>
         </ul>
-        <!-- PROJECT_DETAIL_END -->
       </article>
-    </main>
+    <!-- PROJECT_DETAIL_END -->
+  </main>
 
-    <footer class="site-footer">
-      <div class="page-container footer-inner">
-        <span><a href="mailto:contact@LatentLens.org">contact@LatentLens.org</a></span>
-        <span>&copy; <span data-year></span> LatentLens</span>
-      </div>
-    </footer>
+  <footer class="site-footer">
+    <div class="page-container footer-inner">
+      <span><a href="mailto:contact@LatentLens.org">contact@LatentLens.org</a></span>
+      <span>&copy; <span data-year></span> LatentLens</span>
+    </div>
+  </footer>
 
-    <script src="/script.js"></script>
-  </body>
+  <script src="/script.js"></script>
+</body>
+
 </html>
