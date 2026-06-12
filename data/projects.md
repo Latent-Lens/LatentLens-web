@@ -10,7 +10,7 @@ image: public/img/flow_plotter.png
 summary: A web application for ingesting flow cytometry data, modeling cell-cycle distributions with the Dean-Jett-Fox model, and generating highly customizable, publication-ready plots.
 thumbClass: project-thumb-light
 detailUrl: projects/flow-plotter.html
-appUrl: https://flowplotter.latentlens.org
+appUrl: https://flow.latentlens.org
 
 ---
 FlowPlotter is a web application that supports both automated and interactive analysis and visualization of flow cytometry data, with a focus on cell-cycle modeling from DNA-content histograms. The application enables users to ingest flow cytometry data, generate one-dimensional histograms (automatically or with user adjustments), fit cell-cycle distributions using Dean-Jett-Fox modeling, and estimate the relative proportions of G1, S-phase, and G2 populations.

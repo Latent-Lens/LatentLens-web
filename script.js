@@ -54,4 +54,21 @@
     btn.classList.toggle('active', isHidden);
     btn.setAttribute('aria-expanded', String(isHidden));
   });
+
+  // Dynamic GitHub Repositories
+  const statsContainer = document.getElementById('github-stats-container');
+  const reposContainer = document.getElementById('github-repos-container');
+
+  if (statsContainer && reposContainer) {
+    const langColors = {
+      JavaScript: '#f1e05a',
+      TypeScript: '#3178c6',
+      Python: '#3572A5',
+      HTML: '#e34c26',
+      CSS: '#563d7c',
+      Java: '#b07219',
+      Ruby: '#701516',
+      R: '#198ce7',
+      C: '#555555',
+      'C++': '#f34b7d',
 })();
