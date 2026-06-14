@@ -7,7 +7,7 @@ title: Flow Cytometry Cell-Cycle Analysis Web Application
 status: In Progress
 tags: Research, Bioinformatics, Web Application
 image: public/img/phasefinder.png
-summary: A web application for ingesting flow cytometry data, modeling cell-cycle distributions with the Dean-Jett-Fox model, and generating highly customizable, publication-ready plots.
+summary: PhaseFinder is a web application for ingesting flow cytometry data, modeling cell-cycle distributions with the Dean-Jett-Fox model, and generating highly customizable, publication-ready plots.
 thumbClass: project-thumb-light
 detailUrl: projects/phase-finder.html
 appUrl: https://PhaseFinder.LatentLens.org
