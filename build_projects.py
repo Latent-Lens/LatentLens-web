@@ -608,16 +608,56 @@ def generate_sitemap(projects: list[Project]) -> str:
     ]
     urls.extend(clean_project_path(project) for project in projects)
 
-    entries = "\n".join(
-        f"""  <url>
-    <loc>{absolute_url(path)}</loc>
-    <lastmod>{today}</lastmod>
-  </url>"""
-        for path in urls
-    )
+    import hashlib
+    import json
+    
+    cache_file = ROOT / "data" / "sitemap_cache.json"
+    cache = {}
+    if cache_file.exists():
+        try:
+            cache = json.loads(cache_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    def get_file_for_url(path: str) -> Path:
+        if path == "/":
+            return ROOT / "index.html"
+        elif path.startswith("/projects/") and len(path) > 10:
+            return PROJECTS_DIR / f"{path[10:]}.html"
+        else:
+            return ROOT / "pages" / f"{path[1:]}.html"
+
+    entries = []
+    for path in urls:
+        abs_url = absolute_url(path)
+        file_path = get_file_for_url(path)
+        
+        content_hash = ""
+        if file_path.exists():
+            content_hash = hashlib.md5(file_path.read_bytes()).hexdigest()
+            
+        cached_info = cache.get(abs_url, {})
+        cached_hash = cached_info.get("hash")
+        cached_lastmod = cached_info.get("lastmod", today)
+        
+        if content_hash and content_hash != cached_hash:
+            lastmod = today
+            cache[abs_url] = {"hash": content_hash, "lastmod": lastmod}
+        else:
+            lastmod = cached_lastmod
+            cache[abs_url] = {"hash": content_hash, "lastmod": lastmod}
+
+        entries.append(f"""  <url>
+    <loc>{abs_url}</loc>
+    <lastmod>{lastmod}</lastmod>
+  </url>""")
+
+    cache_file.write_text(json.dumps(cache, indent=2), encoding="utf-8")
+
+    entries_xml = "\n".join(entries)
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{entries}
+{entries_xml}
 </urlset>
 """
 

@@ -1,0 +1,46 @@
+{
+  "https://latentlens.org/": {
+    "hash": "0737c9910c7739d595f05e0da45d548c",
+    "lastmod": "2026-06-14"
+  },
+  "https://latentlens.org/projects": {
+    "hash": "c05eda39002ab15ca8cad282b73fcab9",
+    "lastmod": "2026-06-14"
+  },
+  "https://latentlens.org/publications": {
+    "hash": "a4561d20d26727d43e8d2e14a35d425b",
+    "lastmod": "2026-06-14"
+  },
+  "https://latentlens.org/repositories": {
+    "hash": "addce1d16f8c1b17e32769d0592ea97d",
+    "lastmod": "2026-06-14"
+  },
+  "https://latentlens.org/projects/phase-finder": {
+    "hash": "2a9bbe3bd2f2189f0530ac5fa5cc13ee",
+    "lastmod": "2026-06-14"
+  },
+  "https://latentlens.org/projects/silac-proteomics": {
+    "hash": "87bc4245592668c8e6116a62a1a3307e",
+    "lastmod": "2026-06-14"
+  },
+  "https://latentlens.org/projects/thepapertrail": {
+    "hash": "d587e666e61ac5844df8711aceef693a",
+    "lastmod": "2026-06-14"
+  },
+  "https://latentlens.org/projects/whole-ptm-proteomics": {
+    "hash": "0350e09cfccfae3470034400dba63494",
+    "lastmod": "2026-06-14"
+  },
+  "https://latentlens.org/projects/bulk-rna-seq": {
+    "hash": "110573c2942fa944f5dc4c5bcb7c1c0a",
+    "lastmod": "2026-06-14"
+  },
+  "https://latentlens.org/projects/global-weather": {
+    "hash": "56d575e522beeb104844560f658d1f14",
+    "lastmod": "2026-06-14"
+  },
+  "https://latentlens.org/projects/pathogen-detection": {
+    "hash": "b67f240c066879c62b02265fb86b92e0",
+    "lastmod": "2026-06-14"
+  }
+}
